@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/components/button_rounded.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -21,6 +22,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    // Initialize Firebase Core
+    // https://firebase.flutter.dev/docs/overview/#initializing-flutterfire
+    initializeFlutterFire();
+
     controller = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this,
@@ -58,6 +64,25 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.dispose();
   }
 
+  bool _initialized = false;
+  bool _error = false;
+
+  // Define an async function to initialize FlutterFire
+  void initializeFlutterFire() async {
+    try {
+      // Wait for Firebase to initialize and set `_initialized` state to true
+      await Firebase.initializeApp();
+      setState(() {
+        _initialized = true;
+      });
+    } catch (e) {
+      // Set `_error` state to true if Firebase initialization fails
+      setState(() {
+        _error = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,17 +116,23 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             SizedBox(
               height: 48.0,
             ),
-            buttonLoginRegister(
-              onTap: () {
+            buttonRounded(
+              onTap: () async {
                 //Go to login screen.
-                Navigator.pushNamed(context, LoginScreen.id);
+                if (_initialized) {
+                  // Firebase Core was initialized
+                  Navigator.pushNamed(context, LoginScreen.id);
+                }
               },
               color: Colors.lightBlueAccent,
               caption: 'Log In',
             ),
-            buttonLoginRegister(
-                onTap: () {
-                  Navigator.pushNamed(context, RegistrationScreen.id);
+            buttonRounded(
+                onTap: () async {
+                  if (_initialized) {
+                    // Firebase Core was initialized
+                    Navigator.pushNamed(context, RegistrationScreen.id);
+                  }
                 },
                 color: Colors.blueAccent,
                 caption: "Register"),
