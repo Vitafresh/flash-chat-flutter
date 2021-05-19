@@ -1,5 +1,5 @@
 import 'package:flash_chat/components/button_rounded.dart';
-import 'package:flash_chat/components/textbox_rounded.dart';
+import 'package:flash_chat/constants.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -30,20 +30,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 48.0,
             ),
-            TextboxRouded(
-              onChanged: (value) {
-                //Do something with the user input.
+            TextField(
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your e-mail'),
+              onChanged: (value){
+                // Do somth
               },
-              hintText: 'Enter your email',
             ),
             SizedBox(
               height: 8.0,
             ),
-            TextboxRouded(
-              onChanged: (value) {
-                //Do something with the user input.
+            TextField(
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your password'),
+              onChanged: (value){
+                // Do somth
               },
-              hintText: 'Enter your password',
             ),
             SizedBox(
               height: 24.0,

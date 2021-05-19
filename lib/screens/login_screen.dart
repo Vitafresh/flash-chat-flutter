@@ -1,6 +1,6 @@
 import 'package:flash_chat/components/button_rounded.dart';
-import 'package:flash_chat/components/textbox_rounded.dart';
 import 'package:flutter/material.dart';
+import 'package:flash_chat/constants.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -30,21 +30,21 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 48.0,
             ),
-            TextboxRouded(
-              onChanged: (val) {
-                //Do something with the user input.
-                print(val);
+            TextField(
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+              onChanged: (value){
+                // Do somth
               },
-              hintText: 'Enter your email',
             ),
             SizedBox(
               height: 8.0,
             ),
-            TextboxRouded(
-                onChanged: (value) {
-                  //Do something with the user input.
-                },
-                hintText: 'Enter your password'),
+            TextField(
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your password'),
+              onChanged: (value){
+                // Do somth
+              },
+            ),
             SizedBox(
               height: 24.0,
             ),
