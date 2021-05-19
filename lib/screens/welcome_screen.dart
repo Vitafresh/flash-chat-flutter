@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:flash_chat/components/button_rounded.dart';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -25,7 +27,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
 
     // animation = CurvedAnimation(parent: controller,curve: Curves.easeIn);
-    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white).animate(controller);
+    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
+        .animate(controller);
 
     controller.forward();
     //controller.reverse(from: 1.0);
@@ -43,9 +46,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     controller.addListener(() {
       setState(() {
-
+        // Если не сделать, то анимация не будет обновляться в интерфейсе
+        // Достаточно пустого setState
       });
-      print(animation.value);
     });
   }
 
@@ -88,44 +91,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to login screen.
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            buttonLoginRegister(
+              onTap: () {
+                //Go to login screen.
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
+              color: Colors.lightBlueAccent,
+              caption: 'Log In',
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
+            buttonLoginRegister(
+                onTap: () {
+                  Navigator.pushNamed(context, RegistrationScreen.id);
+                },
                 color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to registration screen.
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
-            ),
+                caption: "Register"),
           ],
         ),
       ),
