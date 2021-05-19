@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "255773409702",
+    "project_id": "flashchatinflutter",
+    "storage_bucket": "flashchatinflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255773409702:android:d463b2b9c3f0a620844f67",
+        "android_client_info": {
+          "package_name": "top.vitafresh.flash_chat_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255773409702-152n8fhjjp0ed285ouvvos1mfilq620t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlYuBqNIRXaJZ09wCsfHpHP0ACNoV3Ymo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255773409702-152n8fhjjp0ed285ouvvos1mfilq620t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
