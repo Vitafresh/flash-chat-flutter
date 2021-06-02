@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -86,6 +88,27 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+              stream: _firestore.collection('messages').snapshots(),
+                builder: (context, snapshot){
+                  if(snapshot.hasData){
+                    final messages = snapshot.data.docs;
+                    List<Text> messageWidgets = [];
+                    print('MessageText:');
+                    for(QueryDocumentSnapshot msg in messages){
+                      final Map<String, dynamic> messageMap = msg.data();
+                      final String messageText=messageMap['text'];
+                      final String messageSender=messageMap['sender'];
+                      final messageWidget = Text('$messageText from $messageSender');
+                      messageWidgets.add(messageWidget);
+                    }
+                    return Column(
+                      children: messageWidgets,
+                    );
+                  }
+                  return null;
+                },
+            ),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
